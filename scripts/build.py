@@ -76,7 +76,12 @@ def render_md(md: str) -> str:
         m = re.match(r"^!\[([^\]]*)\]\(([^)]+)\)\s*$", line)
         if m:
             flush_para()
-            out.append(f'<img src="{m.group(2)}" alt="{html.escape(m.group(1), quote=True)}">')
+            src = m.group(2)
+            # Absolute so it resolves under /field-guide even without a trailing
+            # slash (cleanUrls serves the page at /field-guide, not /field-guide/).
+            if not src.startswith(("http://", "https://", "/")):
+                src = "/field-guide/" + src.lstrip("./")
+            out.append(f'<img src="{src}" alt="{html.escape(m.group(1), quote=True)}">')
             i += 1; continue
         m = re.match(r"^(#{1,6})\s+(.*)$", line)
         if m:
