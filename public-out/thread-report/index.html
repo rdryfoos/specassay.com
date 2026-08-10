@@ -23,7 +23,7 @@
     <p class="eyebrow">Field feature · illuminate rung</p>
     <h1><span class="lo">Thread Report</span></h1>
     <p class="dek">What SpecAssay pins to every pull request.</p>
-    <p class="lede">A passing Gate proves the thread holds — but a reviewer still has to read the diff, and a green check quietly borrows credibility for everything in it. So on every PR, SpecAssay posts one briefing: what moved on the Golden Thread, the touched story walked end to end, and the changes that sit <em style="color:var(--ink)">far from the thread</em>. The briefing <b style="color:var(--ink)">illuminates; it never blocks</b> — a broken Gate is refused by a separate check.</p>
+    <p class="lede">A passing Gate proves the thread holds — but a reviewer still has to read the diff, and a green check quietly borrows credibility for everything in it. So on every PR, SpecAssay posts one briefing: what moved on the Golden Thread, the touched story walked end to end, and the changes that sit <em style="color:var(--ink)">off the thread</em>. The briefing <b style="color:var(--ink)">illuminates; it never blocks</b> — a broken Gate is refused by a separate check.</p>
     <div class="cta">
       <a class="btn btn-primary" href="https://github.com/rdryfoos/specassay/pull/1">See the green PR →</a>
       <a class="btn btn-ghost" href="https://github.com/rdryfoos/specassay/pull/2">See the broken PR →</a>
@@ -37,7 +37,7 @@
       <tr><td class="fname">tests/test_sync.py</td><td>adds <code>test_AC_SYNC_02_…</code> — the proof</td><td style="text-align:right"><span class="tag on">on the thread</span></td></tr>
       <tr><td class="fname">specs/sync/tasks.md</td><td>closes the debt task <code>T005</code></td><td style="text-align:right"><span class="tag on">on the thread</span></td></tr>
       <tr><td class="fname">src/sync.py</td><td>carries <code>@covers AC-SYNC-02</code></td><td style="text-align:right"><span class="tag on">on the thread</span></td></tr>
-      <tr><td class="fname">src/metrics.py</td><td>new — event counters, no mark</td><td style="text-align:right"><span class="tag far">far from the thread</span></td></tr>
+      <tr><td class="fname">src/metrics.py</td><td>new — event counters, no mark</td><td style="text-align:right"><span class="tag far">off thread</span></td></tr>
     </table>
     <p class="anno">SpecAssay changes <b>nothing</b> about the PR itself — not its title, not its description, not its diff. It leaves the human's artifact alone and posts a comment beside it. What follows is that comment, verbatim, section by section.</p>
   </section>
@@ -61,7 +61,7 @@
       <div>
         <div class="report">
           <h4>What moved</h4>
-          <div><span class="dot g"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/main/examples/example-app/PRD.md">AC-SYNC-02</a> — <span style="color:var(--dim)">tracked-debt</span> → <b style="color:var(--ink)">proven</b> ⬆ <span class="files">· <a href="https://github.com/rdryfoos/specassay/pull/1/files#diff-e5e2c6b551b0bf55ed75122d23530dfc524d0e5496b14e2ed1f07e5eb3ef924e">test_sync.py</a> <a href="https://github.com/rdryfoos/specassay/pull/1/files#diff-5fd62781947525482b5be34f16be8de96c4acf6a941ce47676f0eac1f63786da">sync.py</a></span></div>
+          <div><span class="dot g"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/main/examples/example-app/PRD.md">AC-SYNC-02</a> — <span style="color:var(--dim)">tracked-debt</span> → <b style="color:var(--ink)">proven</b> <span class="files">· <a href="https://github.com/rdryfoos/specassay/pull/1/files#diff-e5e2c6b551b0bf55ed75122d23530dfc524d0e5496b14e2ed1f07e5eb3ef924e">test_sync.py</a> <a href="https://github.com/rdryfoos/specassay/pull/1/files#diff-5fd62781947525482b5be34f16be8de96c4acf6a941ce47676f0eac1f63786da">sync.py</a></span></div>
         </div>
         <p class="anno"><b>The debt was paid.</b> SpecAssay diffs the base manifest against the PR-head manifest. Here one acceptance criterion moved from owed to answered-for. The ID links to its line in the registry; the trailing files are the on-thread changes that <em style="color:var(--ink)">did</em> the moving — its proof and <code>@covers</code> — each a click to the exact diff. Minted, retired, and carrier-added rows show here too.</p>
       </div>
@@ -71,10 +71,10 @@
       <div class="step-n">3</div>
       <div>
         <div class="report">
-          <h4>The thread now — SYNC</h4>
+          <h4>Thread Status — SYNC</h4>
           <table>
             <tr><td><span class="dot g"></span>AC-SYNC-01</td><td style="color:var(--dim)">proven</td><td></td></tr>
-            <tr><td><span class="dot g"></span>AC-SYNC-02</td><td style="color:var(--dim)">proven</td><td class="chg">◀ changed</td></tr>
+            <tr><td><span class="dot g"></span>AC-SYNC-02</td><td style="color:var(--dim)">proven</td><td class="chg"><a href="https://github.com/rdryfoos/specassay/pull/1/files#diff-e5e2c6b551b0bf55ed75122d23530dfc524d0e5496b14e2ed1f07e5eb3ef924e">◀ changed</a></td></tr>
           </table>
           <div class="hidden-note">+2 untouched backlog rows not shown.</div>
         </div>
@@ -86,8 +86,8 @@
       <div class="step-n">4</div>
       <div>
         <div class="report">
-          <h4>Far from the thread</h4>
-          <div style="color:var(--dim)">1 changed file sits <b style="color:var(--ink)">far from the thread</b> — it changed, but nothing in it carries a mark tying it to an intent this PR moved:</div>
+          <h4>Off Thread</h4>
+          <div style="color:var(--dim)">1 changed file sits <b style="color:var(--ink)">off the thread</b> — it changed, but nothing in it carries a mark tying it to an intent this PR moved:</div>
           <div style="margin-top:8px"><span class="files"><a href="https://github.com/rdryfoos/specassay/pull/1/files#diff-ebd515a4ebdf5642aaa900bc143d21b07a57dcbb38009e3c4161d818ffd515ee">src/metrics.py</a></span></div>
         </div>
         <p class="anno"><b>This is the whole point.</b> <code>metrics.py</code> changed, but nothing in it touches an intent this PR moved. SpecAssay surfaces it — as a <em style="color:var(--ink)">clickable</em> spotlight straight to the diff hunk — and stops there. A legitimate refactor and unwanted scope look identical from here, so the machine refuses to guess. It hands the reviewer a spotlight, not a verdict.</p>
@@ -105,7 +105,7 @@
           <div class="rn">🧵 Thread Report</div>
           <div class="gateline">🔴 Golden Thread broken</div>
           <h4 style="margin-top:14px">What moved</h4>
-          <div><span class="dot r"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/main/examples/example-app/PRD.md">AC-SYNC-02</a> — <span style="color:var(--dim)">tracked-debt</span> → <b style="color:var(--ink)">GAP</b> ⬇</div>
+          <div><span class="dot r"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/main/examples/example-app/PRD.md">AC-SYNC-02</a> — <span style="color:var(--dim)">tracked-debt</span> → <b style="color:var(--ink)">GAP</b></div>
         </div>
         <p class="anno"><b>The break is illuminated, not hidden.</b> An acceptance criterion slid from owed-but-tracked to a <em style="color:var(--ink)">silent gap</em> — no proof, no open TODO excusing it. The report posts this briefing anyway, headed <b style="color:var(--ink)">broken</b>, so a reviewer reads <em style="color:var(--ink)">what</em> broke in thread terms, not just a red ✕.</p>
       </div>
@@ -120,7 +120,7 @@
     <h2>Why a comment, and never a block</h2>
     <p class="sub">The report never fails the build. That's doctrine, not a limitation — three postures, in increasing intervention and decreasing frequency:</p>
     <ul class="ladder">
-      <li class="illuminate"><span class="k">Illuminate — always on</span><p>The briefing above. It surfaces what's decision-relevant and renders no verdict. "Far from the thread" lives here.</p></li>
+      <li class="illuminate"><span class="k">Illuminate — always on</span><p>The briefing above. It surfaces what's decision-relevant and renders no verdict. "Off thread" lives here.</p></li>
       <li class="affirm"><span class="k">Affirm — opt-in</span><p>A team can set <code>offthread_ack: required</code> to turn the far-list into a one-click human tick before merge. That's a <em style="color:var(--ink)">person's</em> verdict, gated behind a lightweight config — never the machine's.</p></li>
       <li class="refuse"><span class="k">Refuse — rare, provable</span><p>The Gate blocks only on what it can prove is a defect: a silent acceptance-criterion gap, an invented ID, exact-set drift. Off-thread is not machine-decidable as a defect, so it never earns a refusal.</p></li>
     </ul>
@@ -130,7 +130,7 @@
       <a class="btn btn-primary" href="https://github.com/rdryfoos/specassay/pull/1">See it live on PR #1 →</a>
       <a class="btn btn-ghost" href="https://github.com/rdryfoos/specassay/blob/main/docs/thread-report.md">Full reference →</a>
     </div>
-    <p class="sub" style="margin-top:14px;font-size:.9rem;color:var(--dim)">This page is the walkthrough. The <a href="https://github.com/rdryfoos/specassay/blob/main/docs/thread-report.md">reference doc</a> carries the technical depth — how it decides <em>far</em> (the repo-vs-project path bridge, the reserved <code>distance</code> field), the <code>offthread_ack: off · record · required</code> config, and the CI wiring that posts the briefing then blocks separately.</p>
+    <p class="sub" style="margin-top:14px;font-size:.9rem;color:var(--dim)">This page is the walkthrough. The <a href="https://github.com/rdryfoos/specassay/blob/main/docs/thread-report.md">reference doc</a> carries the technical depth — how it decides <em>off-thread</em> (the repo-vs-project path bridge, the reserved <code>distance</code> field), the <code>offthread_ack: off · record · required</code> config, and the CI wiring that posts the briefing then blocks separately.</p>
   </section>
 
   <footer>
