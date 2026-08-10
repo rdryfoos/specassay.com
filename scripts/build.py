@@ -29,6 +29,7 @@ NAV = """  <header class="top">
     <div class="brand"><a href="/" style="color:inherit">SpecAssay</a> <span class="of">hallmark the work</span></div>
     <nav>
       <a href="/field-guide">Field guide</a>
+      <a href="/thread-report">Thread Report</a>
       <a href="https://loupe.dryfoos.com/">Loupe</a>
       <a href="https://github.com/rdryfoos/specassay">GitHub</a>
     </nav>
@@ -156,6 +157,14 @@ def main() -> None:
     OUT.mkdir(parents=True)
     shutil.copy(SRC / "index.html", OUT / "index.html")
     shutil.copytree(SRC / "assets", OUT / "assets")
+
+    # Thread Report walkthrough (hand-authored page → /thread-report/) + its PDF
+    tr = OUT / "thread-report"
+    tr.mkdir()
+    shutil.copy(SRC / "thread-report.html", tr / "index.html")
+    pdf = SRC / "thread-report-walkthrough.pdf"
+    if pdf.exists():
+        shutil.copy(pdf, tr / "thread-report-walkthrough.pdf")
 
     md = (SRC / "field-guide.md").read_text(encoding="utf-8")
     body = (
