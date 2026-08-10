@@ -100,9 +100,16 @@ footer a{color:var(--dim)}
 .step{display:grid;grid-template-columns:34px 1fr;gap:16px;margin:26px 0}
 .step-n{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-size:.9rem;color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 45%,var(--line));background:var(--chip)}
+.step-n.x{color:var(--gap);border-color:color-mix(in srgb,var(--gap) 50%,var(--line))}
 .report{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;font-size:.98rem}
 .report h4{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 8px;font-family:var(--mono)}
+.report .rn{font-family:var(--mono);font-size:.78rem;color:var(--dim);margin-bottom:6px}
 .report .gateline{color:var(--ink);font-weight:600}
+.report.broken{border-color:color-mix(in srgb,var(--gap) 45%,var(--line))}
+.report .files a,.report .idlink{font-family:var(--mono);color:var(--blue);text-decoration:none;border-bottom:1px dotted color-mix(in srgb,var(--blue) 50%,transparent)}
+.report .files a:hover,.report .idlink:hover{border-bottom-style:solid}
+.report .files{color:var(--dim)}
+.report .hidden-note{color:var(--dim);font-size:.82rem;margin-top:8px;font-style:italic}
 .report table{width:100%;border-collapse:collapse;margin:6px 0 0;font-size:.92rem}
 .report td{padding:.32rem .2rem;border-bottom:1px solid var(--line);color:var(--dim);font-family:var(--mono)}
 .report tr:last-child td{border-bottom:none}
