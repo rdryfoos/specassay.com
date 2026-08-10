@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PR for Intent — SpecAssay</title>
+<meta name="description" content="What SpecAssay does when the intent itself moves: the Thread Report's Intent Changed section flags a restated acceptance criterion and points at the code and tests written against the old wording. It illuminates; it never blocks.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="wrap">
+    <header class="site-header">
+    <div class="row top">
+      <div class="brand"><a href="/">SpecAssay</a> <span class="of">hallmark the work</span></div>
+      <nav class="family"><a href="https://dryfoos.com/">Dryfoos</a><a class="here" href="/">SpecAssay</a><a href="https://loupe.dryfoos.com/">Loupe</a></nav>
+    </div>
+    <hr class="rule">
+    <div class="row bot">
+      <nav class="sitenav"><a href="/">SpecAssay</a><a href="/field-guide">Field Guide</a><a href="/thread-report">Thread Report</a><a class="here" href="/pr-for-intent">PR for Intent</a></nav>
+      <div class="slot">A <a class="ext" href="https://github.com/github/spec-kit" target="_blank" rel="noopener">Spec Kit</a> Extension Bundle</div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">Field feature · illuminate rung</p>
+    <h1><span class="lo">PR for Intent</span></h1>
+    <p class="dek">When the intent itself moves.</p>
+    <p class="lede">The <a href="/thread-report">Thread Report</a> catches code that drifts from intent. But sometimes it's the <em style="color:var(--ink)">intent</em> that moves: someone rewrites an acceptance criterion, and the code and tests written against the old wording are suddenly answering a question no one is asking. The durable ID is stable, so nothing <em style="color:var(--ink)">looks</em> broken — a green check would wave it straight through. <b style="color:var(--ink)">Intent Changed</b> is the section that catches exactly this. It flags the restated criterion and points at the code and tests that now owe a re-confirmation. It <b style="color:var(--ink)">illuminates; it never blocks</b>.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/rdryfoos/specassay/pull/4">See it live on PR #4 →</a>
+      <a class="btn btn-ghost" href="/thread-report">Back to Thread Report →</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>The pull request</h2>
+    <p class="sub">This walkthrough is a <a href="https://github.com/rdryfoos/specassay/pull/4">real PR</a> on the bundled example app. Product tightened the offline-sync SLA — a change made offline should now appear on a second device within <b style="color:var(--ink)">2s</b> of reconnect, down from 5s. That's one line in the PRD: the acceptance criterion <code>AC-SYNC-01</code> gets <em style="color:var(--ink)">restated</em>. The ID doesn't move; its meaning does.</p>
+    <table class="difftable">
+      <tr><td class="fname">examples/example-app/PRD.md</td><td><code>AC-SYNC-01</code> restated: within <code>5s</code> → within <code>2s</code></td><td style="text-align:right"><span class="tag far">intent moved</span></td></tr>
+    </table>
+    <p class="anno">The Gate stays <b style="color:var(--green)">green</b>: the ID is unchanged, the <code>@covers</code> mark still holds, and the named proof still exists and still passes. On its own, that green check would pass this PR as done. But the proof was written against <em style="color:var(--ink)">5s</em> — it no longer answers for the criterion as it now reads. That gap between a passing test and a moved requirement is exactly what Intent Changed exists to surface.</p>
+  </section>
+
+  <section>
+    <h2>The briefing it pins to the PR</h2>
+
+    <div class="step">
+      <div class="step-n">1</div>
+      <div>
+        <div class="report">
+          <div class="rn">🧵 Thread Report</div>
+          <div class="gateline">🟢 Golden Thread intact</div>
+        </div>
+        <p class="anno"><b>Nothing broke.</b> A restatement isn't a defect — the ID is stable, the proof is present, the thread still holds end to end. So the header reads <b style="color:var(--ink)">intact</b>, and everything that follows is a <em style="color:var(--ink)">reading</em>, not a refusal. This is the illuminate rung doing its job: surface what's decision-relevant, render no verdict.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">2</div>
+      <div>
+        <div class="report">
+          <h4>Intent Changed</h4>
+          <div style="color:var(--dim)">⚠️ 1 intent was restated — its wording moved under the code and tests written against the old text. Re-confirm each still satisfies the new statement.</div>
+          <div style="margin-top:12px"><span class="dot g"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/PRD.md#L14">AC-SYNC-01</a> — <b style="color:var(--ink)">restated</b></div>
+          <div style="margin:4px 0 2px 18px;color:var(--dim)">was: <em>… appears on a second device within 5s of reconnect.</em></div>
+          <div style="margin:0 0 10px 18px;color:var(--dim)">now: <em>… appears on a second device within 2s of reconnect.</em></div>
+          <div style="margin-left:18px;color:var(--dim)">re-confirm:</div>
+          <div style="margin-left:18px" class="files">
+            <a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/src/sync.py#L51">sync.py:51</a>
+            <a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/tests/test_sync.py#L37">test_sync.py:37</a> <span style="color:var(--gap)">⚠ still contains the old <code>5s</code></span>
+          </div>
+        </div>
+        <p class="anno"><b>The restatement is detected, not guessed.</b> SpecAssay diffs the base registry against the PR-head registry, whitespace-insensitive — so a reflow or a typo fix is ignored, but a substantive reword of a criterion's own statement counts. Here <code>AC-SYNC-01</code>'s wording moved from <em>5s</em> to <em>2s</em>, and the section prints the before and after so the reviewer reads the change in the criterion's own words, not just a diff hunk.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">3</div>
+      <div>
+        <div class="report">
+          <div style="margin-left:0" class="files"><a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/tests/test_sync.py#L37">test_sync.py:37</a> <span style="color:var(--gap)">⚠ still contains the old <code>5s</code></span></div>
+        </div>
+        <p class="anno"><b>This is the catch.</b> The old value <code>5s</code> was a concrete token — a number the machine can grep for. It's gone from the statement, but it still lives in the proof: <code>test_sync.py</code> line 37 asserts <code>elapsed &lt; 5.0</code> under a comment that reads <em>within 5s</em>. The test passes, the thread is green — but it's proving the <em style="color:var(--ink)">old</em> requirement. SpecAssay names the exact file and line, straight to the diff, and stops. It won't rewrite your test; it hands the reviewer a spotlight, not a verdict.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How sharp the pointer gets</h2>
+    <p class="sub">A restatement's blast radius depends on how much the machine can <em style="color:var(--ink)">prove</em>. SpecAssay never guesses past that line — it grades the re-confirm hint into three tiers, sharpest first:</p>
+
+    <div class="step">
+      <div class="step-n">1</div>
+      <div>
+        <div class="report">
+          <h4>Pinpointed — the old value still lives in a carrier</h4>
+          <div style="margin-left:0" class="files"><a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/tests/test_sync.py#L37">test_sync.py:37</a> <span style="color:var(--gap)">⚠ still contains the old <code>5s</code></span></div>
+        </div>
+        <p class="anno">When the old concrete value (a number-with-unit, a quoted string, an ALL-CAPS constant) is still present verbatim in the code or a test that carries the intent, the report points straight at it. This is PR #4's case — the strongest signal it can give: <em style="color:var(--ink)">here is the exact line that still encodes what you just changed.</em></p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">2</div>
+      <div>
+        <div class="report">
+          <h4>Value gone — changed, but not found verbatim</h4>
+          <div style="color:var(--dim)"><em>Value <code>5s</code> → <code>2s</code> changed, but not found verbatim in the code or tests — re-confirm by reading.</em></div>
+          <div style="margin-top:6px" class="files"><a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/src/sync.py#L51">sync.py:51</a> · <a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/tests/test_sync.py#L37">test_sync.py:37</a></div>
+        </div>
+        <p class="anno">A value moved, but the old one isn't sitting in any carrier verbatim — maybe it was abstracted behind a constant, maybe the logic never hard-coded it. The machine can't pin a line, so it says so plainly and lists the carriers to re-read. Honest about what it doesn't know.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">3</div>
+      <div>
+        <div class="report">
+          <h4>Prose — no literal value to pin down</h4>
+          <div style="color:var(--dim)"><em>Prose change — no literal value to pin down; re-confirm the code and its test by reading them against the new wording.</em></div>
+          <div style="margin-top:6px" class="files"><a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/src/sync.py#L51">sync.py:51</a> · <a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/tests/test_sync.py#L37">test_sync.py:37</a></div>
+        </div>
+        <p class="anno">The wording changed in meaning, not in any greppable value — <em>"ordered by relevance"</em> becomes <em>"ordered by recency."</em> There's nothing to search for, so the machine doesn't pretend. It flags the criterion, lists the carriers, and asks a human to read them against the new sentence. The default, and the most common.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why re-confirm, and never block</h2>
+    <p class="sub">Restating an intent is legitimate, routine work — requirements tighten, wording sharpens, product learns. The machine has no way to know whether the existing code still satisfies the new sentence; that's a human judgement. So Intent Changed sits squarely on the <b style="color:var(--ink)">illuminate</b> rung — the same doctrine that governs "off thread":</p>
+    <ul class="ladder">
+      <li class="illuminate"><span class="k">Illuminate — always on</span><p>The Intent Changed section above. It surfaces the restated criterion and its blast radius, and renders no verdict on whether the code still holds.</p></li>
+      <li class="affirm"><span class="k">Affirm — the human tick</span><p>Re-confirmation is a <em style="color:var(--ink)">person's</em> call: read the carriers, decide they still answer for the new wording, and merge. The report makes that decision cheap and visible — it never makes it for you.</p></li>
+      <li class="refuse"><span class="k">Refuse — not here</span><p>The Gate blocks only what it can prove is a defect: a silent acceptance-criterion gap, an invented ID, exact-set drift. A restatement is none of those — the ID is durable, the proof is present. So it never earns a refusal.</p></li>
+    </ul>
+    <p class="pullquote">A durable ID promises the wording can change without the thread snapping. Intent Changed is how that promise stays honest — it makes sure the number didn't move while the proof stood still.</p>
+    <p class="sub">And it stays a comment. SpecAssay posts beside your PR; it never edits the criterion, the code, or the test. The diff is the record; the Thread Report is the reading glass.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/rdryfoos/specassay/pull/4">See it live on PR #4 →</a>
+      <a class="btn btn-ghost" href="https://github.com/rdryfoos/specassay/blob/main/docs/thread-report.md">Full reference →</a>
+    </div>
+    <p class="sub" style="margin-top:14px;font-size:.9rem;color:var(--dim)">Intent Changed is one section of the <a href="/thread-report">Thread Report</a>. The <a href="https://github.com/rdryfoos/specassay/blob/main/docs/thread-report.md">reference doc</a> carries the technical depth — the whitespace-insensitive restatement test, the concrete-token heuristic behind the three tiers, and where the section sits in the report's order.</p>
+  </section>
+
+    <footer class="site-footer">
+    <hr class="rule rev">
+    <div class="frow">
+      <div>
+        <div class="fbrand"><a href="/">SpecAssay</a> <span class="of">hallmark the work</span></div>
+        <div class="fcol">A <a class="ext" href="https://github.com/github/spec-kit" target="_blank" rel="noopener">Spec Kit</a> extension bundle — the thread lives in the repo.<br>Part of the <span class="fam">Dryfoos</span> family.</div>
+      </div>
+      <div class="fright">
+        <nav class="family"><a href="https://dryfoos.com/">Dryfoos</a><a class="here" href="/">SpecAssay</a><a href="https://loupe.dryfoos.com/">Loupe</a></nav>
+        <div class="flinks"><a href="https://github.com/rdryfoos/specassay" target="_blank" rel="noopener">GitHub ↗</a><a href="/field-guide">Field Guide</a><a href="/thread-report">Thread Report</a></div>
+        <div class="fmeta">© 2026 · dryfoos.com</div>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

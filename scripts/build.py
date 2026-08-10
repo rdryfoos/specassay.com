@@ -35,7 +35,8 @@ FAMILY_HTML = (
 )
 SITE_PAGES = [("home", "SpecAssay", "/"),
               ("field-guide", "Field Guide", "/field-guide"),
-              ("thread-report", "Thread Report", "/thread-report")]
+              ("thread-report", "Thread Report", "/thread-report"),
+              ("pr-for-intent", "PR for Intent", "/pr-for-intent")]
 
 
 def header(current: str = "home") -> str:
@@ -200,6 +201,11 @@ def main() -> None:
     tr = OUT / "thread-report"
     tr.mkdir()
     emit_page("thread-report.html", tr / "index.html", "thread-report")
+
+    # PR for Intent walkthrough (hand-authored page → /pr-for-intent/)
+    pi = OUT / "pr-for-intent"
+    pi.mkdir()
+    emit_page("pr-for-intent.html", pi / "index.html", "pr-for-intent")
 
     md = (SRC / "field-guide.md").read_text(encoding="utf-8")
     # Lift the first "# Heading" into a hero-style title, matching the Thread

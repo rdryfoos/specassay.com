@@ -16,7 +16,7 @@
     </div>
     <hr class="rule">
     <div class="row bot">
-      <nav class="sitenav"><a href="/">SpecAssay</a><a href="/field-guide">Field Guide</a><a class="here" href="/thread-report">Thread Report</a></nav>
+      <nav class="sitenav"><a href="/">SpecAssay</a><a href="/field-guide">Field Guide</a><a class="here" href="/thread-report">Thread Report</a><a href="/pr-for-intent">PR for Intent</a></nav>
       <div class="slot">A <a class="ext" href="https://github.com/github/spec-kit" target="_blank" rel="noopener">Spec Kit</a> Extension Bundle</div>
     </div>
   </header>
@@ -95,6 +95,8 @@
         <p class="anno"><b>This is the whole point.</b> <code>metrics.py</code> changed, but nothing in it touches an intent this PR moved. SpecAssay surfaces it — as a <em style="color:var(--ink)">clickable</em> spotlight straight to the diff hunk — and stops there. A legitimate refactor and unwanted scope look identical from here, so the machine refuses to guess. It hands the reviewer a spotlight, not a verdict.</p>
       </div>
     </div>
+
+    <p class="sub" style="margin-top:26px">One section this PR never triggers: <b style="color:var(--ink)">Intent Changed</b>. It appears only when a PR <em style="color:var(--ink)">restates</em> an intent's wording — the ID holds, but the meaning moves, and the code and tests written against the old text now owe a re-confirmation. The report flags the criterion and points straight at them. <a href="/pr-for-intent">See the PR for Intent walkthrough →</a></p>
   </section>
 
   <section>
