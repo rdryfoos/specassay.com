@@ -12,19 +12,22 @@
   <!--HEADER-->
 
   <div class="hero">
-    <svg class="braid" viewBox="0 0 120 340" aria-hidden="true">
-      <path class="strand-b" d="M60 8 C 34 70, 86 130, 60 192 C 40 250, 80 300, 60 332"/>
-      <path class="strand-a" d="M60 8 C 86 70, 34 130, 60 192 C 80 250, 40 300, 60 332"/>
-      <circle class="node" cx="60" cy="8" r="5"/>
-      <circle class="node" cx="60" cy="192" r="5"/>
-      <circle class="node frayed" cx="60" cy="332" r="5"/>
+    <svg class="braid" viewBox="0 0 180 400" role="img"
+         aria-label="The Golden Thread: two strands braided through three nodes. Drag any node to reshape the thread.">
+      <path class="strand strand-b" d=""/>
+      <path class="strand strand-a" d=""/>
+      <path class="hit" d=""/>
+      <circle class="node proven" data-i="0" r="5"/>
+      <circle class="node proven" data-i="1" r="5"/>
+      <circle class="node source" data-i="2" r="5"/>
+      <text class="hint" x="90" y="18" text-anchor="middle">drag a node</text>
     </svg>
     <p class="eyebrow">The assay office for your codebase</p>
     <h1><span class="lo">SpecAssay</span></h1>
     <p class="dek">Hallmark the work — intent, build, proof — checked on every push.</p>
     <p class="lede">Every honest piece of work stands on three legs: the <b style="color:var(--ink)">intent</b> (why we're doing it), the <b style="color:var(--ink)">build</b> (the code that does it), and the <b style="color:var(--ink)">proof</b> (a test that answers for it). Kick out any leg and it topples. SpecAssay tests that all three are present and tied together, refuses to pass work as "done" when a leg is quietly missing, and strikes what it finds into a small file — the <a href="https://loupe.dryfoos.com/trace-manifest.json" download><code>trace-manifest</code></a> — so anyone can read the provenance long after everyone's gone home.</p>
     <div class="cta">
-      <a class="btn btn-primary" href="https://loupe.dryfoos.com/app">See it live in Loupe →</a>
+      <a class="btn btn-primary" href="https://loupe.dryfoos.com/">See it live in Loupe →</a>
       <a class="btn btn-ghost" href="https://github.com/rdryfoos/specassay">Get it on GitHub</a>
     </div>
   </div>
@@ -62,5 +65,6 @@
 
   <!--FOOTER-->
 </div>
+<script src="/assets/thread.js" defer></script>
 </body>
 </html>

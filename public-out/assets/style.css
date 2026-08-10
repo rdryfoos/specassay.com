@@ -32,14 +32,24 @@ h1 .lo{color:var(--blue)}
 .btn-ghost{color:var(--dim);border-color:var(--line)}
 .btn-ghost:hover{color:var(--ink);text-decoration:none}
 
-/* braided thread motif (reused from Loupe) */
-.braid{position:absolute;top:70px;right:-10px;width:220px;height:340px;opacity:.9;pointer-events:none}
+/* ---- interactive Golden Thread (drag a node; springs to rest) ---- */
+.braid{position:absolute;top:64px;right:-8px;width:180px;height:400px;opacity:.95;pointer-events:none;touch-action:none}
 @media(max-width:820px){.braid{display:none}}
-.braid path{fill:none;stroke-width:2.4}
+.braid .strand{fill:none;stroke-width:2.4;stroke-linecap:round}
 .strand-a{stroke:var(--gold);filter:drop-shadow(0 0 6px rgba(232,189,82,.4))}
-.strand-b{stroke:color-mix(in srgb,var(--gold) 45%,var(--line))}
-.node{fill:var(--green)}
-.node.frayed{fill:var(--gap)}
+.strand-b{stroke:color-mix(in srgb,var(--gold) 60%,var(--line))}
+.braid .hit{fill:none;stroke:transparent;stroke-width:26;pointer-events:stroke;cursor:grab}
+.braid.dragging .hit{cursor:grabbing}
+.braid .node{pointer-events:auto;cursor:grab;transition:r .18s ease,filter .2s ease}
+.braid .node.grabbing{cursor:grabbing}
+.braid .node.proven{fill:var(--green);filter:drop-shadow(0 0 3px rgba(33,150,83,.5))}
+.braid .node.source{fill:var(--blue);filter:drop-shadow(0 0 3px rgba(158,212,255,.5))}
+.braid .node:hover,.braid .node.grabbing{r:8}
+.braid .node.proven:hover,.braid .node.proven.grabbing{filter:drop-shadow(0 0 9px rgba(33,150,83,.95))}
+.braid .node.source:hover,.braid .node.source.grabbing{filter:drop-shadow(0 0 9px rgba(158,212,255,.95))}
+.braid .hint{fill:var(--faint);font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;transition:opacity .5s ease;pointer-events:none}
+.braid.touched .hint{opacity:0}
+@media(prefers-reduced-motion:reduce){.braid .node{transition:none}}
 
 /* sections + cards */
 section{padding:52px 0;border-top:1px solid var(--line)}
