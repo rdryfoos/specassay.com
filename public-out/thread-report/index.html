@@ -25,8 +25,8 @@
     <p class="dek">What SpecAssay pins to every pull request.</p>
     <p class="lede">A passing Gate proves the thread holds — but a reviewer still has to read the diff, and a green check quietly borrows credibility for everything in it. So on every PR, SpecAssay posts one briefing: what moved on the Golden Thread, the touched story walked end to end, and the changes that sit <em style="color:var(--ink)">far from the thread</em>. The briefing <b style="color:var(--ink)">illuminates; it never blocks</b> — a broken Gate is refused by a separate check.</p>
     <div class="cta">
-      <a class="btn btn-primary" href="https://github.com/rdryfoos/specassay/pull/1">See the real PR →</a>
-      <a class="btn btn-ghost no-print" href="/thread-report/thread-report-walkthrough.pdf">Download the annotated PDF</a>
+      <a class="btn btn-primary" href="https://github.com/rdryfoos/specassay/pull/1">See the green PR →</a>
+      <a class="btn btn-ghost" href="https://github.com/rdryfoos/specassay/pull/2">See the broken PR →</a>
     </div>
   </div>
 
@@ -128,7 +128,9 @@
     <p class="sub">And it stays a comment: SpecAssay posts beside your PR, it never edits it. The diff is the record; the Thread Report is the reading glass.</p>
     <div class="cta">
       <a class="btn btn-primary" href="https://github.com/rdryfoos/specassay/pull/1">See it live on PR #1 →</a>
+      <a class="btn btn-ghost" href="https://github.com/rdryfoos/specassay/blob/main/docs/thread-report.md">Full reference →</a>
     </div>
+    <p class="sub" style="margin-top:14px;font-size:.9rem;color:var(--dim)">This page is the walkthrough. The <a href="https://github.com/rdryfoos/specassay/blob/main/docs/thread-report.md">reference doc</a> carries the technical depth — how it decides <em>far</em> (the repo-vs-project path bridge, the reserved <code>distance</code> field), the <code>offthread_ack: off · record · required</code> config, and the CI wiring that posts the briefing then blocks separately.</p>
   </section>
 
   <footer>
