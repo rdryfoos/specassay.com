@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thread Report — SpecAssay</title>
-<meta name="description" content="What SpecAssay pins to every pull request: a briefing of what moved on the Golden Thread, the story walked end to end, and the changes that sit far from it. It illuminates; it never blocks.">
+<meta name="description" content="What SpecAssay pins to every pull request: a briefing of what moved on the Golden Thread, the story walked end to end, and the changes that sit off the thread. It illuminates; it never blocks.">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
@@ -43,7 +43,7 @@
   </section>
 
   <section>
-    <h2>The briefing it pins to it</h2>
+    <h2>The briefing it pins to the PR</h2>
 
     <div class="step">
       <div class="step-n">1</div>
@@ -63,7 +63,7 @@
           <h4>What moved</h4>
           <div><span class="dot g"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/main/examples/example-app/PRD.md">AC-SYNC-02</a> — <span style="color:var(--dim)">tracked-debt</span> → <b style="color:var(--ink)">proven</b> <span class="files">· <a href="https://github.com/rdryfoos/specassay/pull/1/files#diff-e5e2c6b551b0bf55ed75122d23530dfc524d0e5496b14e2ed1f07e5eb3ef924e">test_sync.py</a> <a href="https://github.com/rdryfoos/specassay/pull/1/files#diff-5fd62781947525482b5be34f16be8de96c4acf6a941ce47676f0eac1f63786da">sync.py</a></span></div>
         </div>
-        <p class="anno"><b>The debt was paid.</b> SpecAssay diffs the base manifest against the PR-head manifest. Here one acceptance criterion moved from owed to answered-for. The ID links to its line in the registry; the trailing files are the on-thread changes that <em style="color:var(--ink)">did</em> the moving — its proof and <code>@covers</code> — each a click to the exact diff. Minted, retired, and carrier-added rows show here too.</p>
+        <p class="anno"><b>The debt was paid.</b> SpecAssay diffs the base manifest against the PR-head manifest. Here one acceptance criterion moved from owed to answered-for. The ID links to its line in the registry; the trailing files are the on-thread changes that <em style="color:var(--ink)">did</em> the moving — its proof and <code>@covers</code> — each a click to the exact diff. Minted, retired, and rows that gained a <code>@covers</code> or proof show here too.</p>
       </div>
     </div>
 
@@ -121,7 +121,7 @@
     <p class="sub">The report never fails the build. That's doctrine, not a limitation — three postures, in increasing intervention and decreasing frequency:</p>
     <ul class="ladder">
       <li class="illuminate"><span class="k">Illuminate — always on</span><p>The briefing above. It surfaces what's decision-relevant and renders no verdict. "Off thread" lives here.</p></li>
-      <li class="affirm"><span class="k">Affirm — opt-in</span><p>A team can set <code>offthread_ack: required</code> to turn the far-list into a one-click human tick before merge. That's a <em style="color:var(--ink)">person's</em> verdict, gated behind a lightweight config — never the machine's.</p></li>
+      <li class="affirm"><span class="k">Affirm — opt-in</span><p>A team can set <code>offthread_ack: required</code> to turn the off-thread list into a one-click human tick before merge. That's a <em style="color:var(--ink)">person's</em> verdict, gated behind a lightweight config — never the machine's.</p></li>
       <li class="refuse"><span class="k">Refuse — rare, provable</span><p>The Gate blocks only on what it can prove is a defect: a silent acceptance-criterion gap, an invented ID, exact-set drift. Off-thread is not machine-decidable as a defect, so it never earns a refusal.</p></li>
     </ul>
     <p class="pullquote">The machine may only refuse what it can prove is a defect. For the rest, it makes a human look.</p>

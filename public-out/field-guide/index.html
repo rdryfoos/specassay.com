@@ -42,7 +42,7 @@
 <h2>2. Board lens: the four buckets</h2>
 <img src="/field-guide/images/02-board-lens.png" alt="Board lens">
 <p>Same rows, partitioned by status in the same order:</p>
-<ul><li><strong>Backlog</strong>: minted and waiting. Planning-altitude stories and features without their own carrier, plus anything anointed into backlog (section 4). Not a defect.</li><li><strong>Tracked debt</strong>: not done, and the team said so on an open task. Honest yellow.</li><li><strong>Proven</strong>: proof exists. Each card counts its proofs.</li><li><strong>GAP</strong>: last and usually empty, and the column says why. When this column has cards, the Golden Thread is broken.</li></ul>
+<ul><li><strong>Backlog</strong>: minted and waiting. Planning-altitude stories and features without their own <code>@covers</code> or proof, plus anything anointed into backlog (section 4). Not a defect.</li><li><strong>Tracked debt</strong>: not done, and the team said so on an open task. Honest yellow.</li><li><strong>Proven</strong>: proof exists. Each card counts its proofs.</li><li><strong>GAP</strong>: last and usually empty, and the column says why. When this column has cards, the Golden Thread is broken.</li></ul>
 <h2>3. The Descent: one thread, three tiers</h2>
 <p>Click any row and the right pane walks the Golden Thread top to bottom:</p>
 <ul><li><strong>Intent</strong>: the durable ID and its statement, plus a <strong>▸ file:line</strong> toggle (e.g. <code>HomesFlow.prd.md:258</code>) that expands to the actual PRD/registry source around the line where the ID was minted.</li><li><strong>Build</strong>: every <code>@covers</code> mark found in source, each labeled with the file basename and line (e.g. <code>HomeDetailView.swift:3</code>), the full path below, and an "also covers: …" line naming the other IDs that share the same annotation. Each expands to the real code around it.</li><li><strong>Proof</strong>: named tests that encode the ID (for ACs), labeled by test name with the path below, expandable the same way.</li></ul>
@@ -64,7 +64,7 @@
 <p>Filter tile <code>Backlog</code> reads 5: four planning-altitude stories plus the anointed <code>US-SHARE-01</code>.</p>
 <h2>5. Backlog altitude: waiting, not broken</h2>
 <img src="/field-guide/images/05b-backlog-altitude-descent.png" alt="Backlog altitude descent">
-<p>Stories and features (<code>US-…</code>, <code>FR-…</code>, <code>NFR-…</code>) are covered through their child ACs, not by stapling <code>@covers US-…</code> onto a file. When they have no carrier of their own, they ride as backlog: <strong>blue</strong> nodes, solid braid, and the Proof tier spells it out: "backlog altitude (not a silent gap)." Silent-gap refusal is AC-only.</p>
+<p>Stories and features (<code>US-…</code>, <code>FR-…</code>, <code>NFR-…</code>) are covered through their child ACs, not by stapling <code>@covers US-…</code> onto a file. When nothing in source carries their ID, they ride as backlog: <strong>blue</strong> nodes, solid braid, and the Proof tier spells it out: "backlog altitude (not a silent gap)." Silent-gap refusal is AC-only.</p>
 <h2>6. Golden Thread broken: what frays and what does not</h2>
 <img src="/field-guide/images/06-overview-gate-failed.png" alt="Overview with Golden Thread broken">
 <p>The scratch tree after the staged break. Three things change at once:</p>

@@ -47,7 +47,7 @@ Before reading any row, the top bar answers the only global question:
 
 Same rows, partitioned by status in the same order:
 
-- **Backlog**: minted and waiting. Planning-altitude stories and features without their own carrier, plus anything anointed into backlog (section 4). Not a defect.
+- **Backlog**: minted and waiting. Planning-altitude stories and features without their own `@covers` or proof, plus anything anointed into backlog (section 4). Not a defect.
 - **Tracked debt**: not done, and the team said so on an open task. Honest yellow.
 - **Proven**: proof exists. Each card counts its proofs.
 - **GAP**: last and usually empty, and the column says why. When this column has cards, the Golden Thread is broken.
@@ -98,7 +98,7 @@ Filter tile `Backlog` reads 5: four planning-altitude stories plus the anointed 
 
 ![Backlog altitude descent](images/05b-backlog-altitude-descent.png)
 
-Stories and features (`US-…`, `FR-…`, `NFR-…`) are covered through their child ACs, not by stapling `@covers US-…` onto a file. When they have no carrier of their own, they ride as backlog: **blue** nodes, solid braid, and the Proof tier spells it out: "backlog altitude (not a silent gap)." Silent-gap refusal is AC-only.
+Stories and features (`US-…`, `FR-…`, `NFR-…`) are covered through their child ACs, not by stapling `@covers US-…` onto a file. When nothing in source carries their ID, they ride as backlog: **blue** nodes, solid braid, and the Proof tier spells it out: "backlog altitude (not a silent gap)." Silent-gap refusal is AC-only.
 
 ## 6. Golden Thread broken: what frays and what does not
 
