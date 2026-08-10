@@ -33,7 +33,8 @@ FAMILY_HTML = (
     '<a class="here" href="/">SpecAssay</a>'
     '<a href="https://loupe.dryfoos.com/">Loupe</a>'
 )
-SITE_PAGES = [("field-guide", "Field Guide", "/field-guide"),
+SITE_PAGES = [("home", "SpecAssay", "/"),
+              ("field-guide", "Field Guide", "/field-guide"),
               ("thread-report", "Thread Report", "/thread-report")]
 
 
@@ -201,10 +202,22 @@ def main() -> None:
     emit_page("thread-report.html", tr / "index.html", "thread-report")
 
     md = (SRC / "field-guide.md").read_text(encoding="utf-8")
+    # Lift the first "# Heading" into a hero-style title, matching the Thread
+    # Report page (gold eyebrow + big blue h1); the rest renders as the doc body.
+    lines = md.split("\n")
+    title, rest = "Field guide", md
+    for i, ln in enumerate(lines):
+        if ln.startswith("# "):
+            title = ln[2:].strip()
+            rest = "\n".join(lines[i + 1:])
+            break
     body = (
-        '<article class="doc">\n'
-        '<p class="doc-eyebrow">SpecAssay field guide</p>\n'
-        f"{render_md(md)}\n"
+        '<div class="hero" style="padding-bottom:20px">\n'
+        '<p class="eyebrow">SpecAssay field guide</p>\n'
+        f'<h1><span class="lo">{html.escape(title, quote=False)}</span></h1>\n'
+        '</div>\n'
+        '<article class="doc" style="padding-top:8px">\n'
+        f"{render_md(rest)}\n"
         '<a class="doc-back" href="/">← Back to SpecAssay</a>\n'
         "</article>"
     )
