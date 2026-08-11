@@ -77,6 +77,11 @@
   </section>
 
   <section>
+    <h2>Who may move the wording?</h2>
+    <p class="sub">Putting Product and Dev in one repo doesn't erase the seam between them — it changes what the seam is <em style="color:var(--ink)">made of</em>. A tool boundary (requirements in one system, code in another, news crossing by meeting) becomes a <b style="color:var(--ink)">review gate</b>: put the registry under Product's ownership in <code>CODEOWNERS</code>, and no PR that moves an intent's wording merges without a product human's approval. A discovery PR then <em style="color:var(--ink)">becomes the ask</em> — "field says 2s; here's the restatement and the proof" — arriving on the diff with the report's was/now attached, instead of in a meeting after the code shipped. And it's the agent defense: a drifted statement must get past both the tripwire (Intent Changed) and the lock (CODEOWNERS). Who <em style="color:var(--ink)">types</em> the words stays separate from who <em style="color:var(--ink)">approves</em> them — drafts are cheap now; the durable ID keeps the approval about wording, never renumbering.</p>
+  </section>
+
+  <section>
     <h2>How sharp the pointer gets</h2>
     <p class="sub">A restatement's blast radius depends on how much the machine can <em style="color:var(--ink)">prove</em>. SpecAssay never guesses past that line — it grades the re-confirm hint into three tiers, sharpest first:</p>
 
