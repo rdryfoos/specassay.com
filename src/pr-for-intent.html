@@ -37,13 +37,13 @@
           <div class="rn">🧵 Thread Report</div>
           <div class="gateline">🟢 Golden Thread intact</div>
           <h4 style="margin-top:14px">Intent Changed</h4>
-          <div style="margin-top:6px"><span class="dot g"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/922ece1628644336e057257553c815ce4c4213e5/examples/example-app/PRD.md#L14">AC-SYNC-01</a> — <b style="color:var(--ink)">restated</b></div>
+          <div style="margin-top:6px"><span class="dot g"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/PRD.md#L14">AC-SYNC-01</a> — <b style="color:var(--ink)">restated</b></div>
           <div style="margin:4px 0 2px 18px;color:var(--dim)">was: <em>… appears on a second device within 5s of reconnect.</em></div>
           <div style="margin:0 0 8px 18px;color:var(--dim)">now: <em>… appears on a second device within 2s of reconnect.</em></div>
           <div style="margin-left:18px;color:var(--dim)"><em>Value <code>5s</code> → <code>2s</code> changed, but not found verbatim in the code or tests — re-confirm by reading.</em></div>
           <div style="margin:6px 0 0 18px" class="files">re-confirm:
-            <a href="https://github.com/rdryfoos/specassay/blob/922ece1628644336e057257553c815ce4c4213e5/examples/example-app/src/sync.py#L51">sync.py:51</a> ·
-            <a href="https://github.com/rdryfoos/specassay/blob/922ece1628644336e057257553c815ce4c4213e5/examples/example-app/tests/test_sync.py#L18">test_sync.py:18</a>
+            <a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/src/sync.py#L51">sync.py:51</a> ·
+            <a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/tests/test_sync.py#L18">test_sync.py:18</a> <span style="color:var(--green)">(<a href="https://github.com/rdryfoos/specassay/pull/5/files#diff-e5e2c6b551b0bf55ed75122d23530dfc524d0e5496b14e2ed1f07e5eb3ef924e" style="color:var(--green)">updated here</a>)</span>
           </div>
         </div>
         <p class="anno"><b>Nothing stale exists to pinpoint — and that's the tell.</b> The old <code>5s</code> is gone from the statement <em style="color:var(--ink)">and</em> gone from the carriers, because the proof traveled in the same diff. The reviewer reads the intent-diff and the code-diff as one story: the pairing itself is the evidence of coherence. This is what the durable ID buys — <code>AC-SYNC-01</code> never moves, so the wording and its proof can travel together without the thread ever snapping. Bidirectional traceability isn't a slogan here; it's this PR.</p>
@@ -102,7 +102,7 @@
         <div class="report">
           <h4>Value gone — changed, but not found verbatim</h4>
           <div style="color:var(--dim)"><em>Value <code>5s</code> → <code>2s</code> changed, but not found verbatim in the code or tests — re-confirm by reading.</em></div>
-          <div style="margin-top:6px" class="files"><a href="https://github.com/rdryfoos/specassay/blob/922ece1628644336e057257553c815ce4c4213e5/examples/example-app/src/sync.py#L51">sync.py:51</a> · <a href="https://github.com/rdryfoos/specassay/blob/922ece1628644336e057257553c815ce4c4213e5/examples/example-app/tests/test_sync.py#L18">test_sync.py:18</a></div>
+          <div style="margin-top:6px" class="files"><a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/src/sync.py#L51">sync.py:51</a> · <a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/tests/test_sync.py#L18">test_sync.py:18</a> <span style="color:var(--green)">(<a href="https://github.com/rdryfoos/specassay/pull/5/files#diff-e5e2c6b551b0bf55ed75122d23530dfc524d0e5496b14e2ed1f07e5eb3ef924e" style="color:var(--green)">updated here</a>)</span></div>
         </div>
         <p class="anno">A value moved, but the old one isn't sitting in any carrier verbatim — on a discovery PR because the carriers were updated in the same diff (PR #5's case), elsewhere maybe because it was abstracted behind a constant. The machine can't pin a line, so it says so plainly and lists the carriers to re-read. Honest about what it doesn't know.</p>
       </div>
@@ -114,7 +114,7 @@
         <div class="report">
           <h4>Prose — no literal value to pin down</h4>
           <div style="color:var(--dim)"><em>Prose change — no literal value to pin down; re-confirm the code and its test by reading them against the new wording.</em></div>
-          <div style="margin-top:6px" class="files"><a href="https://github.com/rdryfoos/specassay/blob/922ece1628644336e057257553c815ce4c4213e5/examples/example-app/src/sync.py#L51">sync.py:51</a> · <a href="https://github.com/rdryfoos/specassay/blob/922ece1628644336e057257553c815ce4c4213e5/examples/example-app/tests/test_sync.py#L18">test_sync.py:18</a></div>
+          <div style="margin-top:6px" class="files"><a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/src/sync.py#L51">sync.py:51</a> · <a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/tests/test_sync.py#L18">test_sync.py:18</a></div>
         </div>
         <p class="anno">The wording changed in meaning, not in any greppable value — <em>"ordered by relevance"</em> becomes <em>"ordered by recency."</em> There's nothing to search for, so the machine doesn't pretend. It flags the criterion, lists the carriers, and asks a human to read them against the new sentence. The default, and the most common.</p>
       </div>
