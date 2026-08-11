@@ -89,6 +89,16 @@
   <section>
     <h2>Who may move the wording?</h2>
     <p class="sub">Putting Product and Dev in one repo doesn't erase the seam between them — it changes what the seam is <em style="color:var(--ink)">made of</em>. A tool boundary (requirements in one system, code in another, news crossing by meeting) becomes a <b style="color:var(--ink)">review gate</b>: put the registry under Product's ownership in <code>CODEOWNERS</code>, and no PR that moves an intent's wording merges without a product human's approval. A discovery PR then <em style="color:var(--ink)">becomes the ask</em> — "field says 2s; here's the restatement and the proof" — arriving on the diff with the report's was/now attached, instead of in a meeting after the code shipped. And it's the agent defense: a drifted statement must get past both the tripwire (Intent Changed) and the lock (CODEOWNERS). Who <em style="color:var(--ink)">types</em> the words stays separate from who <em style="color:var(--ink)">approves</em> them — drafts are cheap now; the durable ID keeps the approval about wording, never renumbering.</p>
+    <p class="sub">And the seam runs both ways without going in circles. When <em style="color:var(--ink)">Product</em> restates alone, Dev's files don't change — so a file-based gate can never fire for Dev on that PR. But Dev's <em style="color:var(--ink)">obligations</em> changed, and that's the gap the tick covers: <b style="color:var(--ink)"><code>CODEOWNERS</code> gates what the diff touches; <code>intent_ack</code> gates what the diff obligates.</b> One gate per owned artifact, once each, whoever initiated:</p>
+    <div class="report" style="margin-top:18px">
+      <table>
+        <tr><td></td><td><b style="color:var(--ink)">Product's gate</b></td><td><b style="color:var(--ink)">Dev's gate</b></td></tr>
+        <tr><td style="color:var(--dim)">Instrument</td><td><code>CODEOWNERS</code> review</td><td><code>intent_ack</code> tick</td></tr>
+        <tr><td style="color:var(--dim)">Fires when</td><td>the wording is touched</td><td>an intent is restated</td></tr>
+        <tr><td style="color:var(--dim)">Question</td><td><em>"Do we want this promise?"</em></td><td><em>"Does the code still keep it?"</em></td></tr>
+      </table>
+    </div>
+    <p class="anno" style="margin-top:12px">The structure terminates — no gate needs a gate. And when Product drafts the restatement, the mirrored moves apply: Dev completes the PR (converting it into the discovery shape, the <em style="color:var(--ink)">updated in this PR</em> marks showing it), or the owed re-confirm is anointed as tracked-debt and merges with the debt on the books.</p>
   </section>
 
   <section>
