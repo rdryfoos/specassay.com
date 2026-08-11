@@ -44,7 +44,7 @@
 
   <section>
     <h2>Three legs, one thread</h2>
-    <p class="sub">SpecAssay is a small overlay on <a href="https://github.com/github/spec-kit">GitHub's Spec Kit</a>: it adds durable IDs to your templates, runs a deterministic Gate on every push, and emits a <code>trace-manifest.json</code> you can read raw or in Loupe. No fork, no daemon, no second system to keep in sync — the thread lives in the repo.</p>
+    <p class="sub">SpecAssay is a small overlay on <a href="https://github.com/github/spec-kit">GitHub's Spec Kit</a>: it adds durable IDs to your templates, runs one deterministic check — <em>the Gate</em> — on every push, and emits a <code>trace-manifest.json</code> you can read raw or in Loupe. No fork, no daemon, no second system to keep in sync — the thread lives in the repo.</p>
     <div class="cards">
       <div class="card"><p class="k">Intent</p><h3>Minted once, durable</h3><p>The why, minted as a stable ID (<code>US-</code>, <code>FR-</code>, <code>NFR-</code>, <code>AC-</code>) in the registry. Named at intent, never inferred from code later, never renumbered.</p></div>
       <div class="card"><p class="k">Build</p><h3>Marked where it lives</h3><p>Code that serves an intent leaves a one-line <code>@covers ID</code> mark. Greppable, author-written. The Gate reads it; it never invents one for you.</p></div>

@@ -25,7 +25,7 @@
     <p class="eyebrow">Field feature · illuminate rung</p>
     <h1><span class="lo">Thread Report</span></h1>
     <p class="dek">What SpecAssay pins to every pull request.</p>
-    <p class="lede">A passing Gate proves the thread holds — but a reviewer still has to read the diff, and a green check quietly borrows credibility for everything in it. So on every PR, SpecAssay posts one briefing: what moved on the Golden Thread, the touched story walked end to end, and the changes that sit <em style="color:var(--ink)">off the thread</em>. The briefing <b style="color:var(--ink)">illuminates; it never blocks</b> — a broken Gate is refused by a separate check.</p>
+    <p class="lede">SpecAssay's per-push check — <em style="color:var(--ink)">the Gate</em> — can prove the thread holds. But a reviewer still has to read the diff, and a green check quietly borrows credibility for everything in it. So on every PR, SpecAssay posts one briefing: what moved on the Golden Thread, the touched story walked end to end, and the changes that sit <em style="color:var(--ink)">off the thread</em>. The briefing <b style="color:var(--ink)">illuminates; it never blocks</b> — a broken Gate is refused by a separate check.</p>
     <div class="cta">
       <a class="btn btn-primary" href="https://github.com/rdryfoos/specassay/pull/1">See the green PR →</a>
       <a class="btn btn-ghost" href="https://github.com/rdryfoos/specassay/pull/2">See the broken PR →</a>
@@ -34,14 +34,14 @@
 
   <section>
     <h2>The pull request</h2>
-    <p class="sub">This walkthrough is a <a href="https://github.com/rdryfoos/specassay/pull/1">real PR</a> on the bundled example app. A developer paid off some tracked debt — <code>AC-SYNC-02</code>, the disjoint-field merge — by adding the proof that was owed, and dropped in a small metrics module along the way. Four files changed — and at a glance, SpecAssay already sorts them against the thread:</p>
+    <p class="sub">This walkthrough is a <a href="https://github.com/rdryfoos/specassay/pull/1">real PR</a> on the bundled example app. Acceptance criterion <code>AC-SYNC-02</code> (edits to different fields merge cleanly) had been riding as <em style="color:var(--ink)">tracked debt</em>: the team owed it a test and said so on an open task. This PR pays the debt — it adds the named test, closes the task, and drops in a small metrics module along the way. Four files changed — and at a glance, SpecAssay already sorts them against the thread:</p>
     <table class="difftable">
       <tr><td class="fname">tests/test_sync.py</td><td>adds <code>test_AC_SYNC_02_…</code> — the proof</td><td style="text-align:right"><span class="tag on">on the thread</span></td></tr>
       <tr><td class="fname">specs/sync/tasks.md</td><td>closes the debt task <code>T005</code></td><td style="text-align:right"><span class="tag on">on the thread</span></td></tr>
       <tr><td class="fname">src/sync.py</td><td>carries <code>@covers AC-SYNC-02</code></td><td style="text-align:right"><span class="tag on">on the thread</span></td></tr>
       <tr><td class="fname">src/metrics.py</td><td>new — event counters, no mark</td><td style="text-align:right"><span class="tag far">off thread</span></td></tr>
     </table>
-    <p class="anno">SpecAssay changes <b>nothing</b> about the PR itself — not its title, not its description, not its diff. It leaves the human's artifact alone and posts a comment beside it. What follows is that comment, verbatim, section by section.</p>
+    <p class="anno">Two marks make that sorting possible: <code>@covers AC-SYNC-02</code> is a one-line comment saying <em style="color:var(--ink)">this code serves that intent</em>, and <code>test_AC_SYNC_02_…</code> is the proof — a test named for the criterion it answers. And SpecAssay changes <b>nothing</b> about the PR itself — not its title, not its description, not its diff. It leaves the human's artifact alone and posts a comment beside it. What follows is that comment, verbatim, section by section.</p>
   </section>
 
   <section>
@@ -54,7 +54,7 @@
           <div class="rn">🧵 Thread Report</div>
           <div class="gateline">🟢 Golden Thread intact</div>
         </div>
-        <p class="anno"><b>One line, one fact: does the thread hold.</b> A passing Gate does not mean "everything is done" — it means nothing <em style="color:var(--ink)">unfinished</em> is <em style="color:var(--ink)">hidden</em> at acceptance-criterion altitude. No colour on the word — the dot carries it, so it reads the same in a comment and here. What <em style="color:var(--ink)">changed</em> lives below.</p>
+        <p class="anno"><b>One line, one fact: does the thread hold.</b> A passing Gate does not mean "everything is done" — it means no acceptance criterion is quietly unfinished. No colour on the word — the dot carries it, so it reads the same in a comment and here. What <em style="color:var(--ink)">changed</em> lives below.</p>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
           <h4>What moved</h4>
           <div><span class="dot g"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/main/examples/example-app/PRD.md">AC-SYNC-02</a> — <span style="color:var(--dim)">tracked-debt</span> → <b style="color:var(--ink)">proven</b> <span class="files">· <a href="https://github.com/rdryfoos/specassay/pull/1/files#diff-e5e2c6b551b0bf55ed75122d23530dfc524d0e5496b14e2ed1f07e5eb3ef924e">test_sync.py</a> <a href="https://github.com/rdryfoos/specassay/pull/1/files#diff-5fd62781947525482b5be34f16be8de96c4acf6a941ce47676f0eac1f63786da">sync.py</a></span></div>
         </div>
-        <p class="anno"><b>The debt was paid.</b> SpecAssay diffs the base manifest against the PR-head manifest. Here one acceptance criterion moved from owed to answered-for. The ID links to its line in the registry; the trailing files are the on-thread changes that <em style="color:var(--ink)">did</em> the moving — its proof and <code>@covers</code> — each a click to the exact diff. Minted, retired, and rows that gained a <code>@covers</code> or proof show here too.</p>
+        <p class="anno"><b>The debt was paid.</b> On every run the Gate writes a <em style="color:var(--ink)">trace-manifest</em> — the record of every intent's status. SpecAssay compares the one from before this PR with the one after. Here one acceptance criterion moved from owed to answered-for. The ID links to its line in the registry; the trailing files are the on-thread changes that <em style="color:var(--ink)">did</em> the moving — its proof and <code>@covers</code> — each a click to the exact diff. New IDs, retired ones, and rows that gained a mark or a proof show here too.</p>
       </div>
     </div>
 
@@ -80,7 +80,7 @@
           </table>
           <div class="hidden-note">+2 untouched backlog rows not shown.</div>
         </div>
-        <p class="anno"><b>The touched story, walked top to bottom</b> — as it stands <em style="color:var(--ink)">after</em> this PR, with the moved row flagged. Untouched <em style="color:var(--ink)">backlog</em> rows this PR never moved are hidden — the count is stated, never silently dropped — so the reviewer sees the live part of the thread, not the whole planning tree.</p>
+        <p class="anno"><b>The touched story, walked top to bottom</b> — as it stands <em style="color:var(--ink)">after</em> this PR, with the moved row flagged. Untouched <em style="color:var(--ink)">backlog</em> rows — planned work this PR never moved — are hidden, with the count stated, never silently dropped, so the reviewer sees the live part of the thread, not the whole planning tree.</p>
       </div>
     </div>
 
@@ -122,11 +122,11 @@
 
   <section>
     <h2>Why a comment, and never a block</h2>
-    <p class="sub">The report never fails the build. That's doctrine, not a limitation — three postures, in increasing intervention and decreasing frequency:</p>
+    <p class="sub">The report never fails the build. That's by design. Three postures, from always-on to rare:</p>
     <ul class="ladder">
       <li class="illuminate"><span class="k">Illuminate — always on</span><p>The briefing above. It surfaces what's decision-relevant and renders no verdict. "Off thread" lives here.</p></li>
       <li class="affirm"><span class="k">Affirm — opt-in</span><p>A team can set <code>offthread_ack: required</code> to turn the off-thread list into a one-click human tick before merge. That's a <em style="color:var(--ink)">person's</em> verdict, gated behind a lightweight config — never the machine's.</p></li>
-      <li class="refuse"><span class="k">Refuse — rare, provable</span><p>The Gate blocks only on what it can prove is a defect: a silent acceptance-criterion gap, an invented ID, exact-set drift. Off-thread is not machine-decidable as a defect, so it never earns a refusal.</p></li>
+      <li class="refuse"><span class="k">Refuse — rare, provable</span><p>The Gate blocks only on what it can prove is a defect: a silent acceptance-criterion gap, an invented ID, registry drift. The machine can't prove an off-thread change is a defect, so off-thread never earns a refusal.</p></li>
     </ul>
     <p class="pullquote">The machine may only refuse what it can prove is a defect. For the rest, it makes a human look.</p>
     <p class="sub">And it stays a comment: SpecAssay posts beside your PR, it never edits it. The diff is the record; the Thread Report is the reading glass.</p>

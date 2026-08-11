@@ -1,10 +1,10 @@
 # Follow the thread
 
-The SpecAssay field guide: a tour of **SpecAssay**, the **trace-manifest**, and **Loupe**, one screenshot at a time. The captures are a live render of HomesFlow's real Gate 2 emit (`samples/homesflow.trace-manifest.json`); the three broken shots (section 6) came from a deliberate, real break in a scratch copy.
+The SpecAssay field guide: a tour of **SpecAssay**, the **trace-manifest**, and **Loupe**, one screenshot at a time. The captures are a live render of HomesFlow's real trace-manifest (`samples/homesflow.trace-manifest.json`); the three broken shots (section 6) came from a deliberate, real break in a scratch copy.
 
 ## Why bother
 
-Everyone can ship plausible code now. The hard part is proving it does what you meant: which intent it served, what build filled that intent, and what proof showed it was done. When that answer takes longer than a coffee, the Golden Thread is already lost. Old ALM stacks tried to hold the map in a second system that always lagged the repo. This stack keeps the map *in* the repo and checks it on every Gate run. That check belongs in **CI**, not only on the nice developer's laptop: a cowboy without SpecAssay installed can still push, and the CI Gate is the property line.
+Everyone can ship plausible code now. The hard part is proving it does what you meant: which intent it served, what build filled that intent, and what proof showed it was done. When that answer takes longer than a coffee, the Golden Thread is already lost. Requirements tools like Jira and HP ALM tried to hold the map in a second system that always lagged the repo. This stack keeps the map *in* the repo and checks it on every push — the checker is called **the Gate**. That check belongs in **CI**, not only on the nice developer's laptop: a cowboy without SpecAssay installed can still push, and the CI Gate is the property line.
 
 Pull any feature and show its intent → build → proof chain before the coffee cools. That is the whole pitch. Loupe is the glass. SpecAssay is the assay office. The trace-manifest is the hallmarked record you keep.
 
@@ -12,7 +12,7 @@ Pull any feature and show its intent → build → proof chain before the coffee
 - **trace-manifest**: that file (default `trace-manifest.json`). Living documentation wound from the repo, not typed into a lagging side tool. The `format` value belongs to no single tool, so any emitter can write one and Loupe can read it.
 - **Loupe**: the magnifying glass. Does not re-scan. Only reads the trace-manifest. Follow the Golden Thread; spot the fray.
 
-Spec Kit stays Spec Kit. No second career in ALM. The interface is already a little fun; the docs should not scare you out of trying it.
+Spec Kit stays Spec Kit. No second career in requirements tooling. The interface is already a little fun; the docs should not scare you out of trying it.
 
 For the workflow story see [`reading-a-manifest.md`](./reading-a-manifest.md); for terms see [`../presets/specassay/GLOSSARY.md`](../presets/specassay/GLOSSARY.md).
 
@@ -26,7 +26,7 @@ What you are looking at in the loupe is **living documentation**: the record is 
 
 ## Where these pictures came from
 
-The Thread-intact captures are a real render of HomesFlow's live Gate 2 emit, the same emit shipped as [`../samples/homesflow.trace-manifest.json`](../samples/homesflow.trace-manifest.json). No hand-edited JSON. HomesFlow is a small real app used as public evidence of the practice; the count of IDs is "a product with a PRD," not "a compliance mountain."
+The Thread-intact captures are a real render of HomesFlow's live trace-manifest, the same file shipped as [`../samples/homesflow.trace-manifest.json`](../samples/homesflow.trace-manifest.json). No hand-edited JSON. HomesFlow is a small real app used as public evidence of the practice; the count of IDs is "a product with a PRD," not "a compliance mountain."
 
 The three Thread-broken captures (section 6) came from a deliberate break in a scratch copy of the trial tree: one test was renamed so its acceptance criterion lost its named proof while no open task claimed it. The Gate was re-run for real, refused for real, and the scratch copy was deleted afterward. The refusal is honest; only the break was staged.
 
@@ -90,7 +90,7 @@ Amber or blue without fray means *incomplete but excused* — amber for owed deb
 
 Minting an ID is a promise, and that is a feature, not a trap. Name an intent only when you mean it; if nothing claims it yet, write one open TODO that carries it (**anointed backlog**, usually in `specs/backlog/tasks.md`). That is enough ceremony that fat-finger drift still fails, while an honest "build this soon" stays clean.
 
-Here `US-SHARE-01` shows exactly that state: a minted-ahead Owner story (a read-only procedure-share link), status **BACKLOG**, the registry line it was minted on, and the open TODO `T901` that carries it. Zero spec, zero code, zero proofs, Golden Thread intact. Drop the TODO without picking up the work and the next check fails exact-set. The Thread will not carry an unclaimed promise.
+Here `US-SHARE-01` shows exactly that state: a minted-ahead Owner story (a read-only procedure-share link), status **BACKLOG**, the registry line it was minted on, and the open TODO `T901` that carries it. Zero spec, zero code, zero proofs, Golden Thread intact. Drop the TODO without picking up the work and the next Gate run refuses — registry, specs, and tasks must all name the same IDs. The Thread will not carry an unclaimed promise.
 
 Filter tile `Backlog` reads 5: four planning-altitude stories plus the anointed `US-SHARE-01`.
 
