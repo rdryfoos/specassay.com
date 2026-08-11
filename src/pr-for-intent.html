@@ -78,8 +78,9 @@
 
   <section>
     <h2>Who may move the wording?</h2>
-    <p class="sub">Product and Dev share the repo, but the wording still belongs to Product — and that's one line of GitHub config. Put the PRD in <code>CODEOWNERS</code>, and any PR touching an intent's wording waits for Product's approval. Watch what that does to the discovery PR: it <em style="color:var(--ink)">becomes the ask</em>. Dev opens it — new wording, updated proof, report attached — and Product reviews right on the diff, instead of in a meeting after the code shipped. It also stops a drifting agent: a reworded spec can't merge until a person approves it.</p>
-    <p class="sub">The same works in reverse. When Product rewrites a requirement, Dev's files don't change, so no file-ownership rule will ask Dev anything — but Dev's tests now owe an update. That's what the <code>intent_ack</code> checkbox is for: before the PR merges, someone from the build side ticks that the code and tests were checked against the new wording. <b style="color:var(--ink)"><code>CODEOWNERS</code> asks about the files a PR changes; <code>intent_ack</code> asks about the work it creates.</b> Two gates, one each:</p>
+    <p class="sub">Product and Dev share the repo — but the wording can still belong to Product. GitHub has a built-in feature for exactly this: a file called <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners" target="_blank" rel="noopener"><code>CODEOWNERS</code></a>. Each line in it names a file and its owner — one line here: <code>PRD.md @product-team</code>. From then on, any PR that changes the PRD automatically gets Product added as a reviewer, and with one repo setting, it can't merge until Product approves. <a href="https://github.com/rdryfoos/specassay/blob/main/.github/CODEOWNERS" target="_blank" rel="noopener">The example app ships this file →</a></p>
+    <p class="sub">So when Dev's field discovery rewrites a requirement, the PR itself is the request to Product: new wording, updated test, report attached. Product reviews it on the diff. No meeting. And an agent that rewords a spec can't merge anything — a person has to sign first.</p>
+    <p class="sub">The reverse direction needs a second tool. When Product rewrites a requirement, none of Dev's files change — so <code>CODEOWNERS</code> never asks Dev anything. But the tests now need a check. That's the <code>intent_ack</code> checkbox: someone from the build side ticks that the code and tests still match the new wording, before merge. Two gates, one each:</p>
     <div class="report" style="margin-top:18px">
       <table>
         <tr><td></td><td><b style="color:var(--ink)">Product's gate</b></td><td><b style="color:var(--ink)">Dev's gate</b></td></tr>
@@ -88,7 +89,7 @@
         <tr><td style="color:var(--dim)">Question</td><td><em>"Do we want this promise?"</em></td><td><em>"Does the code still keep it?"</em></td></tr>
       </table>
     </div>
-    <p class="anno" style="margin-top:12px">And if the tick can't honestly be given — the test really is out of date — there are two ordinary ways forward. Dev pushes the test update onto the same PR, and the report shows <span style="color:var(--green)">(updated here)</span>. Or the team files the follow-up task, and the row rides as <em style="color:var(--ink)">tracked-debt</em> until it's paid. Either way, nothing merges hidden.</p>
+    <p class="anno" style="margin-top:12px">Can't tick it honestly — the test really is out of date? Two normal fixes: add the test update to this same PR (the report then shows <span style="color:var(--green)">(updated here)</span>), or file the follow-up task and the row shows <em style="color:var(--ink)">tracked-debt</em> until it's done. Nothing merges hidden.</p>
   </section>
 
   <section>
