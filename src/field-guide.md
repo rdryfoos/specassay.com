@@ -41,9 +41,9 @@ Before reading any row, the top bar answers the only global question:
 - The `GAP` tile only lights up red when GAPs exist. Here it reads 0, which is why the Golden Thread is intact.
 - **Read Manifest…** loads any other `*.trace-manifest.json` file. The loupe never re-scans a repo; it only reads what the Gate emitted.
 
-## 2. Board lens: the four buckets
+## 2. The board: the four buckets
 
-![Board lens](images/02-board-lens.png)
+![The status board](images/02-board-lens.png)
 
 Same rows, partitioned by status in the same order:
 

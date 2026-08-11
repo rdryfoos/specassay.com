@@ -43,8 +43,8 @@
 <img src="/field-guide/images/01-overview-gate-pass.png" alt="Overview with Golden Thread intact">
 <p>Before reading any row, the top bar answers the only global question:</p>
 <ul><li><strong>Golden Thread intact.</strong> The trace-manifest contains zero hidden unfinished work. Not zero unfinished work; zero <em>hidden</em> unfinished work.</li><li>The stat tiles read left to right: <strong>Rows</strong> (all durable IDs), then <strong>Backlog → Debt → Proven</strong> (waiting, excused, proven), with <strong>GAP</strong> last. Each tile is a filter button.</li><li>The <code>GAP</code> tile only lights up red when GAPs exist. Here it reads 0, which is why the Golden Thread is intact.</li><li><strong>Read Manifest…</strong> loads any other <code>*.trace-manifest.json</code> file. The loupe never re-scans a repo; it only reads what the Gate emitted.</li></ul>
-<h2>2. Board lens: the four buckets</h2>
-<img src="/field-guide/images/02-board-lens.png" alt="Board lens">
+<h2>2. The board: the four buckets</h2>
+<img src="/field-guide/images/02-board-lens.png" alt="The status board">
 <p>Same rows, partitioned by status in the same order:</p>
 <ul><li><strong>Backlog</strong>: minted and waiting. Planning-altitude stories and features without their own <code>@covers</code> or proof, plus anything anointed into backlog (section 4). Not a defect.</li><li><strong>Tracked debt</strong>: not done, and the team said so on an open task. Honest yellow.</li><li><strong>Proven</strong>: proof exists. Each card counts its proofs.</li><li><strong>GAP</strong>: last and usually empty, and the column says why. When this column has cards, the Golden Thread is broken.</li></ul>
 <h2>3. The Descent: one thread, three tiers</h2>
