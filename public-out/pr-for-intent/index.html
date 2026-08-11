@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PR for Intent — SpecAssay</title>
+<meta name="description" content="What SpecAssay does when the intent itself moves — in either direction. A discovery PR moves the wording and its proof together; a PR from Intent moves the wording alone, and the report shows the reviewer exactly what to check.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="wrap">
+    <header class="site-header">
+    <div class="row top">
+      <div class="brand"><a href="/">SpecAssay</a> <span class="of">hallmark the work</span></div>
+      <nav class="family"><a href="https://dryfoos.com/">Dryfoos</a><a class="here" href="/">SpecAssay</a><a href="https://loupe.dryfoos.com/">Loupe</a></nav>
+    </div>
+    <hr class="rule">
+    <div class="row bot">
+      <nav class="sitenav"><a href="/">SpecAssay</a><a href="/field-guide">Field Guide</a><a href="/thread-report">Thread Report</a><a class="here" href="/pr-for-intent">PR for Intent</a></nav>
+      <div class="slot">A <a class="ext" href="https://github.com/github/spec-kit" target="_blank" rel="noopener">Spec Kit</a> Extension Bundle</div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">Field feature · illuminate rung</p>
+    <h1><span class="lo">PR for Intent</span></h1>
+    <p class="dek">When the intent itself moves.</p>
+    <p class="lede">The <a href="/thread-report">Thread Report</a> catches code that drifts from intent. Sometimes it's the <em style="color:var(--ink)">intent</em> that moves — in either direction. Product tightens a requirement and the code hasn't caught up yet. Or a builder learns something in the field, and the spec needs to catch up with reality. Either way the durable ID holds and the Gate stays green — nothing <em style="color:var(--ink)">looks</em> broken. So the report watches for it: <b style="color:var(--ink)">Intent Changed</b> spots every rewording and asks one question — <em style="color:var(--ink)">did the code and tests move with it?</em> It <b style="color:var(--ink)">illuminates; it never blocks</b>.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/rdryfoos/specassay/pull/5">See the discovery PR #5 →</a>
+      <a class="btn btn-ghost" href="https://github.com/rdryfoos/specassay/pull/4">See the intent-first PR #4 →</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>PR from the Field — the discovery PR</h2>
+    <p class="sub">The healthy case, and the everyday one. Mid-build, the team measured reconcile on real devices: changes land in well under two seconds, every run. The 5s budget in <code>AC-SYNC-01</code> was out of date. So <a href="https://github.com/rdryfoos/specassay/pull/5">PR #5</a> updates the wording and the test together, in one diff:</p>
+    <table class="difftable">
+      <tr><td class="fname">examples/example-app/PRD.md</td><td><code>AC-SYNC-01</code> restated: within <code>5s</code> → within <code>2s</code></td><td style="text-align:right"><span class="tag far">intent moved</span></td></tr>
+      <tr><td class="fname">tests/test_sync.py</td><td>the proof moves with it: <code>assert elapsed &lt; 2.0</code></td><td style="text-align:right"><span class="tag on">on the thread</span></td></tr>
+    </table>
+
+    <div class="step">
+      <div class="step-n">1</div>
+      <div>
+        <div class="report">
+          <div class="rn">🧵 Thread Report</div>
+          <div class="gateline">🟢 Golden Thread intact</div>
+          <h4 style="margin-top:14px">Intent Changed</h4>
+          <div style="margin-top:6px"><span class="dot g"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/PRD.md#L14">AC-SYNC-01</a> — <b style="color:var(--ink)">restated</b></div>
+          <div style="margin:4px 0 2px 18px;color:var(--dim)">was: <em>… appears on a second device within 5s of reconnect.</em></div>
+          <div style="margin:0 0 8px 18px;color:var(--dim)">now: <em>… appears on a second device within 2s of reconnect.</em></div>
+          <div style="margin-left:18px;color:var(--dim)"><em>Value <code>5s</code> → <code>2s</code> changed, but not found verbatim in the code or tests — re-confirm by reading.</em></div>
+          <div style="margin:6px 0 0 18px" class="files">re-confirm:
+            <a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/src/sync.py#L51">sync.py:51</a> ·
+            <a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/tests/test_sync.py#L18">test_sync.py:18</a> <span style="color:var(--green)">(<a href="https://github.com/rdryfoos/specassay/pull/5/files#diff-e5e2c6b551b0bf55ed75122d23530dfc524d0e5496b14e2ed1f07e5eb3ef924e" style="color:var(--green)">updated here</a>)</span>
+          </div>
+        </div>
+        <p class="anno"><b>Nothing stale to point at — and the report says so usefully.</b> The old <code>5s</code> is gone from the statement and gone from the test, because both moved in the same PR. The <span style="color:var(--green)">(updated here)</span> mark confirms the proof came along. A reviewer reads the wording change and the code change as one story. That's what the durable ID buys: <code>AC-SYNC-01</code> itself never changes, so its wording and its proof can move together without breaking the thread.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>PR from Intent — when the wording moves alone</h2>
+    <p class="sub">The case to watch. <a href="https://github.com/rdryfoos/specassay/pull/4">PR #4</a> makes the <em style="color:var(--ink)">same one-line change</em> — 5s → 2s — and nothing else. Maybe Product tightened the requirement. Maybe an agent "cleaned up" the spec and changed its meaning without anyone deciding that. Either way the Gate stays green: the ID didn't change, and the named test still passes. But that test was written for 5s.</p>
+
+    <div class="step">
+      <div class="step-n">2</div>
+      <div>
+        <div class="report">
+          <div class="rn">🧵 Thread Report</div>
+          <div class="gateline">🟢 Golden Thread intact</div>
+          <h4 style="margin-top:14px">Intent Changed</h4>
+          <div style="margin-top:6px"><span class="dot g"></span><a class="idlink" href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/PRD.md#L14">AC-SYNC-01</a> — <b style="color:var(--ink)">restated</b></div>
+          <div style="margin:4px 0 2px 18px;color:var(--dim)">was: <em>… appears on a second device within 5s of reconnect.</em></div>
+          <div style="margin:0 0 8px 18px;color:var(--dim)">now: <em>… appears on a second device within 2s of reconnect.</em></div>
+          <div style="margin-left:18px;color:var(--dim)">re-confirm:</div>
+          <div style="margin-left:18px" class="files">
+            <a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/src/sync.py#L51">sync.py:51</a>
+            <a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/tests/test_sync.py#L37">test_sync.py:37</a> <span style="color:var(--gap)">⚠ still contains the old <code>5s</code></span>
+          </div>
+        </div>
+        <p class="anno"><b>Here the report earns its keep.</b> Same rewording — but the code and tests sat still, and the report can prove it: <code>test_sync.py</code> line 37 still asserts <code>elapsed &lt; 5.0</code>. A passing test, a green thread, and it's testing the old requirement. The report points at the exact line and stops. It won't rewrite your test; it shows the reviewer where to look. Put the two reports side by side and the difference is one glance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Who may move the wording?</h2>
+    <p class="sub">Product and Dev share the repo — but the wording can still belong to Product. GitHub has a built-in feature for exactly this: a file called <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners" target="_blank" rel="noopener"><code>CODEOWNERS</code></a>. Each line in it names a file and its owner — one line here: <code>PRD.md @product-team</code>. From then on, any PR that changes the PRD automatically gets Product added as a reviewer, and with one repo setting, it can't merge until Product approves. <a href="https://github.com/rdryfoos/specassay/blob/main/.github/CODEOWNERS" target="_blank" rel="noopener">The example app ships this file →</a></p>
+    <p class="sub">So when Dev's field discovery rewrites a requirement, the PR itself is the request to Product: new wording, updated test, report attached. Product reviews it on the diff. No meeting. And an agent that rewords a spec can't merge anything — a person has to sign first.</p>
+    <p class="sub">The reverse direction needs a second tool. When Product rewrites a requirement, none of Dev's files change — so <code>CODEOWNERS</code> never asks Dev anything. But the tests now need a check. That's the <code>intent_ack</code> checkbox: someone from the build side ticks that the code and tests still match the new wording, before merge. Two gates, one each:</p>
+    <div class="report" style="margin-top:18px">
+      <table>
+        <tr><td></td><td><b style="color:var(--ink)">Product's gate</b></td><td><b style="color:var(--ink)">Dev's gate</b></td></tr>
+        <tr><td style="color:var(--dim)">Instrument</td><td><code>CODEOWNERS</code> review</td><td><code>intent_ack</code> tick</td></tr>
+        <tr><td style="color:var(--dim)">Fires when</td><td>the wording is touched</td><td>an intent is restated</td></tr>
+        <tr><td style="color:var(--dim)">Question</td><td><em>"Do we want this promise?"</em></td><td><em>"Does the code still keep it?"</em></td></tr>
+      </table>
+    </div>
+    <p class="anno" style="margin-top:12px">Can't tick it honestly — the test really is out of date? Two normal fixes: add the test update to this same PR (the report then shows <span style="color:var(--green)">(updated here)</span>), or file the follow-up task and the row shows <em style="color:var(--ink)">tracked-debt</em> until it's done. Nothing merges hidden.</p>
+  </section>
+
+  <section>
+    <h2>How sharp the pointer gets</h2>
+    <p class="sub">How hard the report leans depends on what it can prove. Three tiers, sharpest first:</p>
+
+    <div class="step">
+      <div class="step-n">1</div>
+      <div>
+        <div class="report">
+          <h4>Pinpointed — the old value still lives in a carrier</h4>
+          <div style="margin-left:0" class="files"><a href="https://github.com/rdryfoos/specassay/blob/aa475842b04e26c3f1b047a6fa2bf7ebdf49ad31/examples/example-app/tests/test_sync.py#L37">test_sync.py:37</a> <span style="color:var(--gap)">⚠ still contains the old <code>5s</code></span></div>
+        </div>
+        <p class="anno">The old value — a number, a quoted string, a constant — still sits in the code or a test, and the report points at the exact line. PR #4's case, and the sharpest hint it can give: <em style="color:var(--ink)">here is the line that still says what you just changed.</em></p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">2</div>
+      <div>
+        <div class="report">
+          <h4>Value gone — changed, but not found verbatim</h4>
+          <div style="color:var(--dim)"><em>Value <code>5s</code> → <code>2s</code> changed, but not found verbatim in the code or tests — re-confirm by reading.</em></div>
+          <div style="margin-top:6px" class="files"><a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/src/sync.py#L51">sync.py:51</a> · <a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/tests/test_sync.py#L18">test_sync.py:18</a> <span style="color:var(--green)">(<a href="https://github.com/rdryfoos/specassay/pull/5/files#diff-e5e2c6b551b0bf55ed75122d23530dfc524d0e5496b14e2ed1f07e5eb3ef924e" style="color:var(--green)">updated here</a>)</span></div>
+        </div>
+        <p class="anno">The value changed, but the old one isn't in the code anymore — on a discovery PR because it was just updated (PR #5's case). Nothing to point at, so the report says so and lists what to re-read.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">3</div>
+      <div>
+        <div class="report">
+          <h4>Prose — no literal value to pin down</h4>
+          <div style="color:var(--dim)"><em>Prose change — no literal value to pin down; re-confirm the code and its test by reading them against the new wording.</em></div>
+          <div style="margin-top:6px" class="files"><a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/src/sync.py#L51">sync.py:51</a> · <a href="https://github.com/rdryfoos/specassay/blob/74a8c00ea933021bf0816d9a923179858a7ff66b/examples/example-app/tests/test_sync.py#L18">test_sync.py:18</a></div>
+        </div>
+        <p class="anno">The wording changed in meaning, not in any searchable value — <em>"ordered by relevance"</em> becomes <em>"ordered by recency."</em> The report doesn't pretend otherwise: it lists the code and the test and asks a human to read them against the new sentence. The most common case.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why re-confirm, and never block</h2>
+    <p class="sub">Rewording an intent is normal work — requirements tighten, reality pushes back, product learns. Whether the existing code still satisfies a new sentence is a human judgement, so the report never blocks on it:</p>
+    <ul class="ladder">
+      <li class="illuminate"><span class="k">Illuminate — always on</span><p>The Intent Changed section above: what was reworded, and which code and tests to check. No verdict.</p></li>
+      <li class="affirm"><span class="k">Affirm — the human tick</span><p>Set <code>intent_ack: required</code> and the report adds a checkbox a human must tick before merge. It matters most when the wording moved alone; on a discovery PR the answer is already in the diff.</p></li>
+      <li class="refuse"><span class="k">Refuse — not here</span><p>The Gate blocks only what it can prove is a defect — a silent gap, an invented ID, registry drift. A rewording is none of those, so it never earns a refusal.</p></li>
+    </ul>
+    <p class="pullquote">A durable ID means the wording can change without the thread snapping. Intent Changed keeps that honest — in both directions, and never silently.</p>
+    <p class="sub">And it stays a comment. SpecAssay posts beside your PR; it never edits the wording, the code, or the test. The diff is the record; the Thread Report is the reading glass.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/rdryfoos/specassay/pull/5">See the discovery PR #5 →</a>
+      <a class="btn btn-ghost" href="https://github.com/rdryfoos/specassay/pull/4">See the intent-first PR #4 →</a>
+    </div>
+    <p class="sub" style="margin-top:14px;font-size:.9rem;color:var(--dim)">Intent Changed is one section of the <a href="/thread-report">Thread Report</a>. The <a href="https://github.com/rdryfoos/specassay/blob/main/docs/thread-report.md">reference doc</a> carries the technical depth — how restatements are detected, the token heuristic behind the tiers, and the <code>intent_ack</code> config. The upward direction has its own essay: <a href="https://www.dryfoos.com/minisite/bidirectional-traceability/" target="_blank" rel="noopener">Bidirectional Traceability</a>.</p>
+  </section>
+
+    <footer class="site-footer">
+    <hr class="rule rev">
+    <div class="frow">
+      <div>
+        <div class="fbrand"><a href="/">SpecAssay</a> <span class="of">hallmark the work</span></div>
+        <div class="fcol">A <a class="ext" href="https://github.com/github/spec-kit" target="_blank" rel="noopener">Spec Kit</a> extension bundle — the thread lives in the repo.<br>Part of the <span class="fam">Dryfoos</span> family.</div>
+      </div>
+      <div class="fright">
+        <nav class="family"><a href="https://dryfoos.com/">Dryfoos</a><a class="here" href="/">SpecAssay</a><a href="https://loupe.dryfoos.com/">Loupe</a></nav>
+        <div class="flinks"><a href="https://github.com/rdryfoos/specassay" target="_blank" rel="noopener">GitHub ↗</a><a href="/field-guide">Field Guide</a><a href="/thread-report">Thread Report</a></div>
+        <div class="fmeta">© 2026 · dryfoos.com</div>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

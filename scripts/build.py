@@ -25,20 +25,51 @@ def resolve_href(u: str) -> str:
     return f"{GH}/{posixpath.normpath(posixpath.join('docs', u))}"
 
 
-NAV = """  <header class="top">
-    <div class="brand"><a href="/" style="color:inherit">SpecAssay</a> <span class="of">hallmark the work</span></div>
-    <nav>
-      <a href="/field-guide">Field guide</a>
-      <a href="/thread-report">Thread Report</a>
-      <a href="https://loupe.dryfoos.com/">Loupe</a>
-      <a href="https://github.com/rdryfoos/specassay">GitHub</a>
-    </nav>
+# ---- shared chrome (rev 4): family switcher above a vignette hairline, this
+# site's own nav below, a per-site tag on the right. Same on every page; only the
+# current-page highlight changes.
+FAMILY_HTML = (
+    '<a href="https://dryfoos.com/">Dryfoos</a>'
+    '<a class="here" href="/">SpecAssay</a>'
+    '<a href="https://loupe.dryfoos.com/">Loupe</a>'
+)
+SITE_PAGES = [("home", "SpecAssay", "/"),
+              ("field-guide", "Field Guide", "/field-guide"),
+              ("thread-report", "Thread Report", "/thread-report"),
+              ("pr-for-intent", "PR for Intent", "/pr-for-intent")]
+
+
+def header(current: str = "home") -> str:
+    items = []
+    for key, label, href in SITE_PAGES:
+        cls = ' class="here"' if key == current else ''
+        items.append(f'<a{cls} href="{href}">{label}</a>')
+    nav = "".join(items)
+    return f"""  <header class="site-header">
+    <div class="row top">
+      <div class="brand"><a href="/">SpecAssay</a> <span class="of">hallmark the work</span></div>
+      <nav class="family">{FAMILY_HTML}</nav>
+    </div>
+    <hr class="rule">
+    <div class="row bot">
+      <nav class="sitenav">{nav}</nav>
+      <div class="slot">A <a class="ext" href="https://github.com/github/spec-kit" target="_blank" rel="noopener">Spec Kit</a> Extension Bundle</div>
+    </div>
   </header>"""
 
-FOOTER = """  <footer>
-    <div class="row">
-      <div>SpecAssay hallmarks the work; <a href="https://loupe.dryfoos.com/">Loupe</a> reads the mark.<br>A Spec Kit bundle — the thread lives in the repo.</div>
-      <div style="text-align:right"><a href="https://github.com/rdryfoos/specassay">GitHub</a><br><a href="https://dryfoos.com/">dryfoos.com</a></div>
+
+FOOTER = f"""  <footer class="site-footer">
+    <hr class="rule rev">
+    <div class="frow">
+      <div>
+        <div class="fbrand"><a href="/">SpecAssay</a> <span class="of">hallmark the work</span></div>
+        <div class="fcol">A <a class="ext" href="https://github.com/github/spec-kit" target="_blank" rel="noopener">Spec Kit</a> extension bundle — the thread lives in the repo.<br>Part of the <span class="fam">Dryfoos</span> family.</div>
+      </div>
+      <div class="fright">
+        <nav class="family">{FAMILY_HTML}</nav>
+        <div class="flinks"><a href="https://github.com/rdryfoos/specassay" target="_blank" rel="noopener">GitHub ↗</a><a href="/field-guide">Field Guide</a><a href="/thread-report">Thread Report</a></div>
+        <div class="fmeta">© 2026 · dryfoos.com</div>
+      </div>
     </div>
   </footer>"""
 
@@ -130,7 +161,7 @@ def render_md(md: str) -> str:
     return "\n".join(out)
 
 
-def page(title: str, desc: str, body: str) -> str:
+def page(title: str, desc: str, body: str, current: str = "field-guide") -> str:
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,7 +173,7 @@ def page(title: str, desc: str, body: str) -> str:
 </head>
 <body>
 <div class="wrap">
-{NAV}
+{header(current)}
 {body}
 {FOOTER}
 </div>
@@ -151,23 +182,48 @@ def page(title: str, desc: str, body: str) -> str:
 """
 
 
+def emit_page(src_name: str, out_path, current: str) -> None:
+    """Copy a hand-authored page, injecting the shared header/footer at the
+    <!--HEADER--> / <!--FOOTER--> placeholders."""
+    txt = (SRC / src_name).read_text(encoding="utf-8")
+    txt = txt.replace("<!--HEADER-->", header(current)).replace("<!--FOOTER-->", FOOTER)
+    out_path.write_text(txt, encoding="utf-8")
+
+
 def main() -> None:
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
-    shutil.copy(SRC / "index.html", OUT / "index.html")
+    emit_page("index.html", OUT / "index.html", "home")
     shutil.copytree(SRC / "assets", OUT / "assets")
 
     # Thread Report walkthrough (hand-authored page → /thread-report/)
     tr = OUT / "thread-report"
     tr.mkdir()
-    shutil.copy(SRC / "thread-report.html", tr / "index.html")
+    emit_page("thread-report.html", tr / "index.html", "thread-report")
+
+    # PR for Intent walkthrough (hand-authored page → /pr-for-intent/)
+    pi = OUT / "pr-for-intent"
+    pi.mkdir()
+    emit_page("pr-for-intent.html", pi / "index.html", "pr-for-intent")
 
     md = (SRC / "field-guide.md").read_text(encoding="utf-8")
+    # Lift the first "# Heading" into a hero-style title, matching the Thread
+    # Report page (gold eyebrow + big blue h1); the rest renders as the doc body.
+    lines = md.split("\n")
+    title, rest = "Field guide", md
+    for i, ln in enumerate(lines):
+        if ln.startswith("# "):
+            title = ln[2:].strip()
+            rest = "\n".join(lines[i + 1:])
+            break
     body = (
-        '<article class="doc">\n'
-        '<p class="doc-eyebrow">SpecAssay field guide</p>\n'
-        f"{render_md(md)}\n"
+        '<div class="hero" style="padding-bottom:20px">\n'
+        '<p class="eyebrow">SpecAssay field guide</p>\n'
+        f'<h1><span class="lo">{html.escape(title, quote=False)}</span></h1>\n'
+        '</div>\n'
+        '<article class="doc" style="padding-top:8px">\n'
+        f"{render_md(rest)}\n"
         '<a class="doc-back" href="/">← Back to SpecAssay</a>\n'
         "</article>"
     )
