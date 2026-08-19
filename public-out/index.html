@@ -32,18 +32,25 @@
       <circle class="node source" data-i="2" r="5"/>
       <text class="hint" x="90" y="18" text-anchor="middle">drag a node</text>
     </svg>
-    <p class="eyebrow">The assay office for your codebase</p>
-    <h1><span class="lo">SpecAssay</span></h1>
-    <p class="dek">Hallmark the work — intent, build, proof — checked on every push.</p>
-    <p class="lede">Every honest piece of work stands on three legs: the <b style="color:var(--ink)">intent</b> (why we're doing it), the <b style="color:var(--ink)">build</b> (the code that does it), and the <b style="color:var(--ink)">proof</b> (a test that answers for it). Kick out any leg and it topples. SpecAssay tests that all three are present and tied together, refuses to pass work as "done" when a leg is quietly missing, and strikes what it finds into a small file — the <a href="https://loupe.dryfoos.com/trace-manifest.json" download><code>trace-manifest</code></a> — so anyone can read the provenance long after everyone's gone home.</p>
+    <p class="eyebrow">AI writes code faster than you can verify it.</p>
+    <h1>Unfinished work looks finished now.</h1>
+    <p class="dek">SpecAssay adds a Thread Report to every pull request: what was asked for, what was built, what's proven, and what's still owed. Your agent ships receipts.</p>
     <div class="cta">
-      <a class="btn btn-primary" href="https://loupe.dryfoos.com/">See it live in Loupe →</a>
-      <a class="btn btn-ghost" href="https://github.com/rdryfoos/specassay">Get it on GitHub</a>
+      <a class="btn btn-primary" href="/field-guide">Install in 20 minutes →</a>
+      <a class="btn btn-ghost" href="/thread-report">See a Thread Report</a>
     </div>
+    <p class="sub">Free and open source (MIT). Runs in your repo. Nothing phones home.</p>
   </div>
 
   <section>
+    <h2>The moment it helps</h2>
+    <p class="sub">The PR looks immaculate. Eight hundred plausible lines, generated overnight. Review was already the bottleneck; now it's the whole tax. The question every approver is quietly asking: is this actually done, and how would I know?</p>
+    <p class="sub">The Thread Report answers it in the PR, where the question lives. Every acceptance criterion shows its state: proven, tracked debt, backlog, or gap. Honest red beats cosmetic green.</p>
+  </section>
+
+  <section>
     <h2>Three legs, one thread</h2>
+    <p class="sub">This is bidirectional traceability, the discipline safety-critical industries have used for decades: a golden thread from intent to build to proof. SpecAssay brings it to everyday delivery, because AI collapsed the cost of keeping the record.</p>
     <p class="sub">SpecAssay is a small overlay on <a href="https://github.com/github/spec-kit">GitHub's Spec Kit</a>: it adds durable IDs to your templates, runs one deterministic check — <em>the Gate</em> — on every push, and emits a <code>trace-manifest.json</code> you can read raw or in Loupe. No fork, no daemon, no second system to keep in sync — the thread lives in the repo.</p>
     <div class="cards">
       <div class="card"><p class="k">Intent</p><h3>Minted once, durable</h3><p>The why, minted as a stable ID (<code>US-</code>, <code>FR-</code>, <code>NFR-</code>, <code>AC-</code>) in the registry. Named at intent, never inferred from code later, never renumbered.</p></div>
